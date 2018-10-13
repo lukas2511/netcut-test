@@ -1,0 +1,23 @@
+===== netcut =====
+
+=== Preview Source Files ===
+
+Generated from capture files while still recording, extremely fast conversion using hardware acceleration / VAAPI,
+1:1 naming from original capture files
+
+see scripts/script-A-generate-previews.py
+
+=== HLS Snippets/Playlist ===
+
+ffmpeg can generate HLS snippet and the playlist, script uses same syntax as fuse-ts and generates a preview directory
+with the corresponding playlist
+
+see scripts/script-B-post-mount.py
+
+=== Player ===
+
+uses playlist in video.js, decoding of timestamps over the whole playlist is unreliable (because of that the UI glitches a bit),
+while playing the timestamps from the actual files are used and will therefore be precise
+
+the player uses videojs plugins for markers and hotkeys, actually setting the markers is currently done by really bad javascript
+(remember: this is just a proof of concept player)
